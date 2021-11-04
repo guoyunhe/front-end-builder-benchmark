@@ -30,8 +30,8 @@
 
 | Task                | create-react-app | parceljs | snowpack | icejs-webpack | icejs-vite |
 | ------------------- | ---------------- | -------- | -------- | ------------- | ---------- |
-| Build without cache | 30.0s            | 15.4s    | -        | 33.0s         | 17.8       |
-| Build with cache    | 14.5s            | 1.7s     | -        | 31.3s         | 16.8       |
+| Build without cache | 30.0s            | 15.4s    | 11.9s    | 33.0s         | 17.8       |
+| Build with cache    | 14.5s            | 1.7s     | 11.7s    | 31.3s         | 16.8       |
 
 ### Device B: ThinkPad T480
 
