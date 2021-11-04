@@ -18,6 +18,7 @@
     "noImplicitThis": true,
     "noImplicitAny": false,
     "importHelpers": true,
+    "resolveJsonModule": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,

@@ -23,6 +23,7 @@
   "scripts": {
     "start": "icejs start",
     "build": "icejs build",
+    "build-no-cache": "rm -rf node_modules/.cache && npm run build",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx ./",
     "eslint:fix": "npm run eslint -- --fix",
