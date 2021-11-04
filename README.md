@@ -16,8 +16,6 @@
 - Fusion Design 1.25
 - Lodash 4.17
 - TypeScript 4.4
-- CSS, SCSS, images, SVGs
-- 10 pages with forms, lists and more
 
 ## Test Results
 
