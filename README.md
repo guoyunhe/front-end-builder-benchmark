@@ -34,19 +34,19 @@ time npm run build
 ### Dev server start time without cache
 
 ```
-rm -rf node_modules/.cache node_modules/.vite .parcel-cache && npm start | ts '[%H:%M:%S.%2N]'
+rm -rf node_modules/.cache node_modules/.vite .parcel-cache src/.umi* && npm start | ts '[%H:%M:%S]'
 ```
 
 ### Dev server start time with cache
 
 ```
-npm start | ts '[%H:%M:%S.%2N]'
+npm start | ts '[%H:%M:%S]'
 ```
 
 ### Dev server hot module reload time
 
 ```
-npm start | ts '[%H:%M:%S.%2N]'
+npm start | ts '[%H:%M:%S]'
 ```
 
 add one line `<div/>` into `src/test-app/App.tsx`
@@ -60,13 +60,13 @@ add one line `<div/>` into `src/test-app/App.tsx`
 - SSD: 500 GB Apple SSD
 - OS: macOS Big Sur 11.6
 
-| Task                           | create-react-app | parceljs | snowpack | icejs-webpack | icejs-vite |
-| ------------------------------ | ---------------- | -------- | -------- | ------------- | ---------- |
-| Build without cache            | 30s              | 15s      | 12s      | 30s           | 16s        |
-| Build with cache               | 14s              | 2s       | 12s      | 30s           | 16s        |
-| Dev server start without cache | 14s              | 2s       | 17s      | 11s           | 5s         |
-| Dev server start with cache    | 8s               | <1s      | 3s       | 8s            | 4s         |
-| Dev server hot-reload          | <1s              | <1s      | <1s      | <1s           | <1s        |
+| Task                           | create-react-app | parceljs | snowpack | icejs-webpack | icejs-vite | umijs |
+| ------------------------------ | ---------------- | -------- | -------- | ------------- | ---------- | ----- |
+| Build without cache            | 30s              | 15s      | 12s      | 30s           | 16s        | 20s   |
+| Build with cache               | 14s              | 2s       | 12s      | 30s           | 16s        | 13s   |
+| Dev server start without cache | 14s              | 2s       | 17s      | 11s           | 5s         | 10s   |
+| Dev server start with cache    | 8s               | <1s      | 3s       | 8s            | 4s         | 8s    |
+| Dev server hot-reload          | <1s              | <1s      | <1s      | <1s           | <1s        | ~1s   |
 | Dev server RAM usage           |
 
 ### Device B: ThinkPad T480
