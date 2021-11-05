@@ -1,3 +1,4 @@
 {
-  "vite": false
+  "vite": false,
+  "eslint": false
 }
