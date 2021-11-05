@@ -17,6 +17,26 @@
 - Lodash 4.17
 - TypeScript 4.4
 
+## Measurement Methods
+
+### Build time without cache
+
+```
+rm -rf node_modules/.cache && time npm run build
+```
+
+### Build time with cache
+
+```
+time npm run build
+```
+
+### Dev server start time without cache
+
+```
+rm -rf node_modules/.cache .parcel-cache && npm start | ts '[%H:%M:%S.%2N]'
+```
+
 ## Test Results
 
 ### Device A: MacBook Pro (16-inch, 2019)
@@ -26,10 +46,13 @@
 - SSD: 500 GB Apple SSD
 - OS: macOS Big Sur 11.6
 
-| Task                | create-react-app | parceljs | snowpack | icejs-webpack | icejs-vite |
-| ------------------- | ---------------- | -------- | -------- | ------------- | ---------- |
-| Build without cache | 30.0s            | 15.4s    | 11.9s    | 33.0s         | 17.8       |
-| Build with cache    | 14.5s            | 1.7s     | 11.7s    | 31.3s         | 16.8       |
+| Task                            | create-react-app | parceljs | snowpack | icejs-webpack | icejs-vite |
+| ------------------------------- | ---------------- | -------- | -------- | ------------- | ---------- |
+| Build without cache             | 30.0s            | 15.4s    | 11.9s    | 33.0s         | 17.8s      |
+| Build with cache                | 14.5s            | 1.7s     | 11.7s    | 31.3s         | 16.8s      |
+| Dev server start widthout cache | 14s              | 2s       | 17s      | 13s           | 8s         |
+| Dev server hot-reload           |
+| Dev server RAM usage            |
 
 ### Device B: ThinkPad T480
 

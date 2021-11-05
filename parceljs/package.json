@@ -19,7 +19,7 @@
     "react-router-dom": "^5.3.0"
   },
   "scripts": {
-    "start": "parcel start",
+    "start": "parcel public/index.html",
     "build": "parcel build public/index.html",
     "build-no-cache": "rm -rf node_modules/.cache && npm run build"
   }
