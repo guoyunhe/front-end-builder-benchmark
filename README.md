@@ -22,7 +22,7 @@
 ### Build time without cache
 
 ```
-rm -rf node_modules/.cache && time npm run build
+rm -rf node_modules/.cache node_modules/.vite .parcel-cache  && time npm run build
 ```
 
 ### Build time with cache
@@ -34,7 +34,7 @@ time npm run build
 ### Dev server start time without cache
 
 ```
-rm -rf node_modules/.cache .parcel-cache && npm start | ts '[%H:%M:%S.%2N]'
+rm -rf node_modules/.cache node_modules/.vite .parcel-cache && npm start | ts '[%H:%M:%S.%2N]'
 ```
 
 ### Dev server start time with cache
@@ -62,11 +62,11 @@ add one line `<div/>` into `src/test-app/App.tsx`
 
 | Task                           | create-react-app | parceljs | snowpack | icejs-webpack | icejs-vite |
 | ------------------------------ | ---------------- | -------- | -------- | ------------- | ---------- |
-| Build without cache            | 30.0s            | 15.4s    | 11.9s    | 33.0s         | 17.8s      |
-| Build with cache               | 14.5s            | 1.7s     | 11.7s    | 31.3s         | 16.8s      |
-| Dev server start without cache | 14s              | 2s       | 17s      | 13s           | 8s         |
-| Dev server start with cache    | 8s               | 0.1s     | 3s       | 9s            | 6s         |
-| Dev server hot-reload          | 1s               | 0.6s     | 1s       | 5s            | 4s         |
+| Build without cache            | 30s              | 15s      | 12s      | 30s           | 16s        |
+| Build with cache               | 14s              | 2s       | 12s      | 30s           | 16s        |
+| Dev server start without cache | 14s              | 2s       | 17s      | 11s           | 5s         |
+| Dev server start with cache    | 8s               | <1s      | 3s       | 8s            | 4s         |
+| Dev server hot-reload          | <1s              | <1s      | <1s      | <1s           | <1s        |
 | Dev server RAM usage           |
 
 ### Device B: ThinkPad T480
