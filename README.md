@@ -43,6 +43,14 @@ rm -rf node_modules/.cache .parcel-cache && npm start | ts '[%H:%M:%S.%2N]'
 npm start | ts '[%H:%M:%S.%2N]'
 ```
 
+### Dev server hot module reload time
+
+```
+npm start | ts '[%H:%M:%S.%2N]'
+```
+
+add one line `<div/>` into `src/test-app/App.tsx`
+
 ## Test Results
 
 ### Device A: MacBook Pro (16-inch, 2019)
@@ -58,7 +66,7 @@ npm start | ts '[%H:%M:%S.%2N]'
 | Build with cache               | 14.5s            | 1.7s     | 11.7s    | 31.3s         | 16.8s      |
 | Dev server start without cache | 14s              | 2s       | 17s      | 13s           | 8s         |
 | Dev server start with cache    | 8s               | 0.1s     | 3s       | 9s            | 6s         |
-| Dev server hot-reload          |
+| Dev server hot-reload          | 1s               | 0.6s     | 1s       | 5s            | 4s         |
 | Dev server RAM usage           |
 
 ### Device B: ThinkPad T480
