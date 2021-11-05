@@ -51,7 +51,13 @@ npm start | ts '[%H:%M:%S]'
 
 add one line `<div/>` into `src/test-app/App.tsx`
 
-### Dev server
+### Dev server RAM usage
+
+```
+npm start | ts '[%H:%M:%S]'
+```
+
+check system monitor for memory usage
 
 ## Test Results
 
@@ -69,7 +75,7 @@ add one line `<div/>` into `src/test-app/App.tsx`
 | Dev server start without cache | 14s              | 2s       | 17s      | 11s           | 5s         | 10s   |
 | Dev server start with cache    | 8s               | <1s      | 3s       | 8s            | 4s         | 8s    |
 | Dev server hot-reload          | <1s              | <1s      | <1s      | <1s           | <1s        | ~1s   |
-| Dev server RAM usage           |
+| Dev server RAM usage           | 259+185+9MB      | 86MB     | 121+53MB | 461+51MB      | 250+44MB   | 301MB |
 
 ### Device B: ThinkPad T480
 
