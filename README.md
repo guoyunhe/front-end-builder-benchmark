@@ -51,6 +51,8 @@ npm start | ts '[%H:%M:%S]'
 
 add one line `<div/>` into `src/test-app/App.tsx`
 
+### Dev server
+
 ## Test Results
 
 ### Device A: MacBook Pro (16-inch, 2019)
@@ -80,3 +82,10 @@ add one line `<div/>` into `src/test-app/App.tsx`
 | ------------------- | ---------------- | -------- | -------- | ------------- | ---------- |
 | Build without cache | -                | -        | -        | -             | -          |
 | Build with cache    | -                | -        | -        | -             | -          |
+
+## Related Issues
+
+### icejs
+
+- [fix: run compiler.close for store cache after build](https://github.com/ice-lab/build-scripts/pull/76)
+- [eslint slows down hot-module-reload](https://github.com/alibaba/ice/issues/4865)
