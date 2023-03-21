@@ -1,97 +1,45 @@
 # Front-end Builder Benchmark
 
-## Test Targets
+## Standard
 
-- create-react-app: the most popular react development tool based on webpack
-- parceljs: zero-config front-end bundler
-- snowpack: very fast esbuild based front-end bundler
-- icejs-webpack: alibaba's front-end tooling solution, using webpack 5
-- icejs-vite: alibaba's front-end tooling solution, using vite and rollup
+The front-end builder must match the following standard
+
+- It is actively maintained. (at least 1 release in last 6 month)
+- It is able to build production assets.
+- It has a dev server with HMR.
+- It supports common technology like Sass, LESS, CSS modules, code splitting.
+- It supports plugins.
+- It does NOT restrict UI framework to use.
+- It does NOT bundle unnecessary runtime, like Redux.
+
+## Candidates
+
+- webpack + babel + terser
+- webpack + swc
+- parcel
+- vite
+- rspack
+
+## Unqualified
+
+- esbuild, doesn't support HMR.
+- swc/swcpack, doesn't support HMR.
+- create-react-app/react-scripts, only supports React.
+- icejs and umijs, only supports React and has too many runtime.
+- turbopack, only supports Next.js.
 
 ## Test Code Base
 
-- React 17
-- React Router 5.3 (icejs doesn't support react-router 6.x)
-- React PDF 5.5
-- Fusion Design 1.25
-- Lodash 4.17
-- TypeScript 4.4
+- 420 React components
+- 420 css files
+- 20 code splitting bundles
+- react & react-dom 18
+- react-router-dom 6
+- @mui/material 5
+- typescript 5
 
-## Measurement Methods
+## Test Result
 
-### Build time without cache
-
-```
-rm -rf node_modules/.cache node_modules/.vite .parcel-cache  && time npm run build
-```
-
-### Build time with cache
-
-```
-time npm run build
-```
-
-### Dev server start time without cache
-
-```
-rm -rf node_modules/.cache node_modules/.vite .parcel-cache src/.umi* && npm start | ts '[%H:%M:%S]'
-```
-
-### Dev server start time with cache
-
-```
-npm start | ts '[%H:%M:%S]'
-```
-
-### Dev server hot module reload time
-
-```
-npm start | ts '[%H:%M:%S]'
-```
-
-add one line `<div/>` into `src/test-app/App.tsx`
-
-### Dev server RAM usage
-
-```
-npm start | ts '[%H:%M:%S]'
-```
-
-check system monitor for memory usage
-
-## Test Results
-
-### Device A: MacBook Pro (16-inch, 2019)
-
-- CPU: Intel(R) Core(TM) i7-9750H CPU @ 2.6 GHz
-- RAM: 16 GB 2667 MHz DDR4
-- SSD: 500 GB Apple SSD
-- OS: macOS Big Sur 11.6
-
-| Task                           | create-react-app | parceljs | snowpack | icejs-webpack | icejs-vite | umijs |
-| ------------------------------ | ---------------- | -------- | -------- | ------------- | ---------- | ----- |
-| Build without cache            | 30s              | 15s      | 12s      | 30s           | 16s        | 20s   |
-| Build with cache               | 14s              | 2s       | 12s      | 30s           | 16s        | 13s   |
-| Dev server start without cache | 14s              | 2s       | 17s      | 11s           | 5s         | 10s   |
-| Dev server start with cache    | 8s               | <1s      | 3s       | 8s            | 4s         | 8s    |
-| Dev server hot-reload          | <1s              | <1s      | <1s      | <1s           | <1s        | ~1s   |
-| Dev server RAM usage           | 259+185+9MB      | 86MB     | 121+53MB | 461+51MB      | 250+44MB   | 301MB |
-
-### Device B: ThinkPad T480
-
-- CPU: Intel(R) Core(TM) i7-8550U CPU @ 1.8 GHz
-- RAM: 32 GB 2667 MHz DDR4
-- SSD: 500 GB Sumsang SSD
-- OS: openSUSE Tumbleweed (Linux 5.15)
-
-| Task                | create-react-app | parceljs | snowpack | icejs-webpack | icejs-vite |
-| ------------------- | ---------------- | -------- | -------- | ------------- | ---------- |
-| Build without cache | -                | -        | -        | -             | -          |
-| Build with cache    | -                | -        | -        | -             | -          |
-
-## Related Issues
-
-### icejs
-
-- [fix: run compiler.close for store cache after build](https://github.com/ice-lab/build-scripts/pull/76)
-- [eslint slows down hot-module-reload](https://github.com/alibaba/ice/issues/4865)
+| builder | dev-server cold start | production build |
+| ------- | --------------------- | ---------------- |
+| vite    | 1.876                 |
