@@ -26,10 +26,7 @@ export default function () {
   useEffect(() => {
     if (ref.current) return;
     ref.current = true;
-    console.log(process.env.APP_START);
-    const start = Number(
-      process?.env?.APP_START || import.meta?.env?.APP_START
-    );
+    const start = Number(import.meta?.env?.APP_START);
     const end = Date.now();
     const duration = (end - start) / 1000;
     console.log('----------------------------------------');
