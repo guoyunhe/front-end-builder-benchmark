@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Cache
+.parcel-cache
+
 # Editor directories and files
 .idea
 .DS_Store

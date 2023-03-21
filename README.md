@@ -42,4 +42,5 @@ The front-end builder must match the following standard
 
 | builder | dev-server cold start | production build |
 | ------- | --------------------- | ---------------- |
-| vite    | 1.876                 |
+| vite    | 1.9s                  | 4.0s             |
+| parcel  | 3.5s                  | 20.2s            |
