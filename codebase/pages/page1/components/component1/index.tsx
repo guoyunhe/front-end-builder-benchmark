@@ -36,11 +36,16 @@ const rows = [
 
 export default function () {
   useEffect(() => {
-    axios.get('http://localhost:8080/').then((res) => {
-      if (res.data === 'close') {
-        window.close();
-      }
-    });
+    axios
+      .get('http://localhost:8080/')
+      .then((res) => {
+        if (res.data === 'close') {
+          window.close();
+        }
+      })
+      .catch(() => {
+        // error
+      });
   }, []);
   return (
     <div className={styles.root}>

@@ -31,7 +31,10 @@ function measureStartTime(cmd, args) {
 function measureBuildTime(cmd, args) {
   return new Promise((resolve, reject) => {
     const start = Date.now();
-    const child = spawn(cmd, args, { cwd: process.cwd() });
+    const child = spawn(cmd, args, {
+      cwd: process.cwd(),
+      env: { ...process.env, NODE_ENV: 'production' },
+    });
     child.on('exit', () => {
       const end = Date.now();
       resolve((end - start) / 1000);
@@ -73,6 +76,22 @@ async function benchmark() {
     'build',
     'codebase/index.html',
   ]).then((s) => console.log(`parcel prod build ${s}s`));
+
+  // Webpack
+  await rm('./node_modules/.cache', { recursive: true, force: true });
+  await measureStartTime('./node_modules/.bin/webpack-dev-server', [
+    '--open',
+  ]).then((s) => console.log(`webpack cold start ${s}s`));
+  await sleep(3);
+  await measureStartTime('./node_modules/.bin/webpack-dev-server', [
+    '--open',
+  ]).then((s) => console.log(`webpack warm start ${s}s`));
+  await sleep(3);
+  await rm('./node_modules/.cache', { recursive: true, force: true });
+  await measureBuildTime('./node_modules/.bin/webpack', []).then((s) =>
+    console.log(`webpack prod build ${s}s`)
+  );
+  await sleep(3);
 }
 
 benchmark();
