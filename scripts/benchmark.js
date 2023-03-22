@@ -14,7 +14,7 @@ function measureStartTime(cmd, args) {
     const start = Date.now();
     const child = spawn(cmd, args, { cwd: process.cwd() });
 
-    const port = 8080;
+    const port = 3456;
     const server = http
       .createServer(() => {
         const end = Date.now();
@@ -43,6 +43,30 @@ function measureBuildTime(cmd, args) {
 }
 
 async function benchmark() {
+  // Rspack
+  await rm('./node_modules/.ignored', { recursive: true, force: true });
+  await rm('./node_modules/.ignored_react-refresh', {
+    recursive: true,
+    force: true,
+  });
+  await measureStartTime('./node_modules/.bin/rspack', ['serve']).then((s) =>
+    console.log(`rspack cold start ${s}s`)
+  );
+  await sleep(3);
+  await measureStartTime('./node_modules/.bin/rspack', ['serve']).then((s) =>
+    console.log(`rspack warm start ${s}s`)
+  );
+  await sleep(3);
+  await rm('./node_modules/.ignored', { recursive: true, force: true });
+  await rm('./node_modules/.ignored_react-refresh', {
+    recursive: true,
+    force: true,
+  });
+  await measureBuildTime('./node_modules/.bin/rspack', ['build']).then((s) =>
+    console.log(`rsbpack prod build ${s}s`)
+  );
+  await sleep(3);
+
   // Vite
   await rm('./node_modules/.vite', { recursive: true, force: true });
   await measureStartTime('./node_modules/.bin/vite', ['--open']).then((s) =>
@@ -76,6 +100,7 @@ async function benchmark() {
     'build',
     'codebase/index.html',
   ]).then((s) => console.log(`parcel prod build ${s}s`));
+  await sleep(3);
 
   // Webpack
   await rm('./node_modules/.cache', { recursive: true, force: true });

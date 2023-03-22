@@ -40,8 +40,11 @@ The front-end builder must match the following standard
 
 ## Test Result
 
+Run `node scripts/benchmark.js` on a MacBook Pro (2019):
+
 | builder | dev-server cold start | dev server warm start | production build |
 | ------- | --------------------- | --------------------- | ---------------- |
+| rspack  | 2.2s                  | 2.0s                  | 1.4s             |
 | vite    | 4.3s                  | 1.3s                  | 6.5s             |
 | parcel  | 13.0s                 | 1.3s                  | 15.7s            |
 | webpack | 14.2s                 | 14.2s                 | 15.8s            |

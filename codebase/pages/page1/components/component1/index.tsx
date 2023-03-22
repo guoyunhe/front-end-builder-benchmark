@@ -37,7 +37,7 @@ const rows = [
 export default function () {
   useEffect(() => {
     axios
-      .get('http://localhost:8080/')
+      .get('http://localhost:3456/')
       .then((res) => {
         if (res.data === 'close') {
           window.close();
