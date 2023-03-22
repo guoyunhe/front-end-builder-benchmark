@@ -1,12 +1,16 @@
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
   entry: './codebase/index.tsx',
+  output: {
+    path: path.resolve(__dirname, 'codebase', 'dist', 'webpack'),
+  },
   stats: { children: true },
   devServer: {
     compress: true,

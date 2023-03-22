@@ -5,6 +5,9 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   envPrefix: 'APP_',
   root: './codebase',
+  build: {
+    outDir: 'dist/vite',
+  },
   server: {
     open: true,
   },
