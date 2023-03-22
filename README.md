@@ -14,8 +14,7 @@ The front-end builder must match the following standard
 
 ## Candidates
 
-- webpack + babel + terser
-- webpack + swc
+- webpack
 - parcel
 - vite
 - rspack
