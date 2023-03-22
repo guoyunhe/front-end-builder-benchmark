@@ -38,9 +38,22 @@ The front-end builder must match the following standard
 - @mui/material 5
 - typescript 5
 
+## Test Method
+
+```
+node scripts/benchmark.js
+```
+
 ## Test Result
 
-Run `node scripts/benchmark.js` on a MacBook Pro (2019):
+```
+$ npx envinfo --system
+  System:
+    OS: macOS 13.2.1
+    CPU: (12) x64 Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+    Memory: 1.39 GB / 16.00 GB
+    Shell: 5.8.1 - /bin/zsh
+```
 
 | builder | dev-server cold start | dev server warm start | production build |
 | ------- | --------------------- | --------------------- | ---------------- |
