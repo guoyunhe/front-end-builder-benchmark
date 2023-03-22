@@ -40,7 +40,7 @@ The front-end builder must match the following standard
 
 ## Test Result
 
-| builder | dev-server cold start | production build |
-| ------- | --------------------- | ---------------- |
-| vite    | 1.9s                  | 4.0s             |
-| parcel  | 3.5s                  | 20.2s            |
+| builder | dev-server cold start | dev server warm start | production build |
+| ------- | --------------------- | --------------------- | ---------------- |
+| vite    | 4.3s                  | 1.3s                  | 6.5s             |
+| parcel  | 6.9s                  | 1.3s                  | 9.3s             |

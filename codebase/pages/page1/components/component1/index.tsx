@@ -12,6 +12,8 @@ import {
   TableRow,
   TextField,
 } from '@mui/material';
+import axios from 'axios';
+import { useEffect } from 'react';
 import styles from './index.module.css';
 
 function createData(
@@ -33,6 +35,13 @@ const rows = [
 ];
 
 export default function () {
+  useEffect(() => {
+    axios.get('http://localhost:8080/').then((res) => {
+      if (res.data === 'close') {
+        window.close();
+      }
+    });
+  }, []);
   return (
     <div className={styles.root}>
       <Card>

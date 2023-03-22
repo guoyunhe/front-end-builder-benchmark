@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import Component1 from './components/component1';
 import Component10 from './components/component10';
 import Component11 from './components/component11';
@@ -22,17 +21,6 @@ import Component9 from './components/component9';
 import styles from './index.module.css';
 
 export default function () {
-  const ref = useRef(false);
-  useEffect(() => {
-    if (ref.current) return;
-    ref.current = true;
-    const start = Number(import.meta?.env?.APP_START);
-    const end = Date.now();
-    const duration = (end - start) / 1000;
-    console.log('----------------------------------------');
-    console.log(`dev-server started in ${duration} seconds`);
-    console.log('----------------------------------------');
-  }, []);
   return (
     <div className={styles.root}>
       <Component1 />
