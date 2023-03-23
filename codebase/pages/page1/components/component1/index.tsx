@@ -13,8 +13,27 @@ import {
   TextField,
 } from '@mui/material';
 import axios from 'axios';
+import EChartsReact from 'echarts-for-react';
+import { BarChart, LineChart, PieChart } from 'echarts/charts';
+import {
+  GridComponent,
+  LegendComponent,
+  TooltipComponent,
+} from 'echarts/components';
+import * as echarts from 'echarts/core';
+import { CanvasRenderer } from 'echarts/renderers';
 import { useEffect } from 'react';
 import styles from './index.module.css';
+
+echarts.use([
+  GridComponent,
+  TooltipComponent,
+  LegendComponent,
+  BarChart,
+  LineChart,
+  PieChart,
+  CanvasRenderer,
+]);
 
 function createData(
   name: string,
@@ -51,6 +70,24 @@ export default function () {
     <div className={styles.root}>
       <Card>
         <CardContent>
+          <EChartsReact
+            option={{
+              xAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+              },
+              yAxis: {
+                type: 'value',
+              },
+              series: [
+                {
+                  data: [120, 200, 150, 80, 70, 110, 130],
+                  type: 'bar',
+                },
+              ],
+            }}
+            style={{ height: 300 }}
+          />
           <Switch />
           <TextField />
           <Button>Foobar</Button>

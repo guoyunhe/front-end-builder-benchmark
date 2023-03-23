@@ -35,6 +35,7 @@ The front-end builder must match the following standard
 - react & react-dom 18
 - react-router-dom 6
 - @mui/material 5
+- echarts 5
 - typescript 5
 
 ## Test Method
