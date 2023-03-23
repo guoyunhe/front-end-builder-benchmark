@@ -102,6 +102,27 @@ async function benchmark() {
   ]).then((s) => console.log(`parcel prod build ${s}s`));
   await sleep(3);
 
+  // Webpack + SWC
+  await rm('./node_modules/.cache', { recursive: true, force: true });
+  await measureStartTime('./node_modules/.bin/webpack-dev-server', [
+    '--config',
+    'webpack-swc.config.js',
+    '--open',
+  ]).then((s) => console.log(`webpack swc cold start ${s}s`));
+  await sleep(3);
+  await measureStartTime('./node_modules/.bin/webpack-dev-server', [
+    '--config',
+    'webpack-swc.config.js',
+    '--open',
+  ]).then((s) => console.log(`webpack swc warm start ${s}s`));
+  await sleep(3);
+  await rm('./node_modules/.cache', { recursive: true, force: true });
+  await measureBuildTime('./node_modules/.bin/webpack', [
+    '--config',
+    'webpack-swc.config.js',
+  ]).then((s) => console.log(`webpack swc prod build ${s}s`));
+  await sleep(3);
+
   // Webpack
   await rm('./node_modules/.cache', { recursive: true, force: true });
   await measureStartTime('./node_modules/.bin/webpack-dev-server', [
