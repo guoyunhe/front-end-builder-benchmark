@@ -1,4 +1,3 @@
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
@@ -35,6 +34,7 @@ module.exports = {
                 },
                 transform: {
                   react: {
+                    refresh: true,
                     runtime: 'automatic',
                   },
                 },
