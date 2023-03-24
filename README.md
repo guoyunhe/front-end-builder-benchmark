@@ -47,12 +47,18 @@ node scripts/benchmark.js
 ## Test Result
 
 ```
-$ npx envinfo --system
+$ npx envinfo --system --npmPackages @rspack/cli,vite,parcel,webpack,@swc/core,esbuild
   System:
     OS: macOS 13.2.1
     CPU: (12) x64 Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
-    Memory: 1.39 GB / 16.00 GB
+    Memory: 3.74 GB / 16.00 GB
     Shell: 5.8.1 - /bin/zsh
+  npmPackages:
+    @rspack/cli: ^0.1.2 => 0.1.2
+    @swc/core: ^1.3.42 => 1.3.42
+    parcel: ^2.8.3 => 2.8.3
+    vite: ^4.2.1 => 4.2.1
+    webpack: ^5.76.3 => 5.76.3
 ```
 
 | builder     | dev-server cold start | dev server warm start | production build |
