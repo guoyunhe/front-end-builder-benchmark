@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "webpack-dev-server --config webpack-swc.config.js --open",
-    "build": "rspack build"
+    "build": "rspack build",
+    "benchmark": "node scripts/benchmark.js"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",

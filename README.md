@@ -55,9 +55,10 @@ $ npx envinfo --system
     Shell: 5.8.1 - /bin/zsh
 ```
 
-| builder | dev-server cold start | dev server warm start | production build |
-| ------- | --------------------- | --------------------- | ---------------- |
-| rspack  | 2.2s                  | 2.0s                  | 1.4s             |
-| vite    | 4.3s                  | 1.3s                  | 6.5s             |
-| parcel  | 13.0s                 | 1.3s                  | 15.7s            |
-| webpack | 14.2s                 | 14.2s                 | 15.8s            |
+| builder     | dev-server cold start | dev server warm start | production build |
+| ----------- | --------------------- | --------------------- | ---------------- |
+| rspack      | 2.6s                  | 2.3s                  | 2.4s             |
+| vite        | 7.2s                  | 1.4s                  | 11.7s            |
+| parcel      | 13.8s                 | 1.5s                  | 21.3s            |
+| webpack swc | 9.9s                  | 9.6s                  | 8.7s             |
+| webpack     | 15.3s                 | 14.9s                 | 24.0s            |
