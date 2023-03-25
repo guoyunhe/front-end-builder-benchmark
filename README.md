@@ -1,5 +1,7 @@
 # Front-end Builder Benchmark
 
+![Chart](chart.svg)
+
 ## Standard
 
 The front-end builder must match the following standard
@@ -38,13 +40,13 @@ The front-end builder must match the following standard
 - echarts 5
 - typescript 5
 
-## Test Method
+## Test Script
 
 ```
 node scripts/benchmark.js
 ```
 
-## Test Result
+## Test Device
 
 ```
 $ npx envinfo --system --npmPackages @rspack/cli,vite,parcel,webpack,@swc/core,esbuild
@@ -60,11 +62,3 @@ $ npx envinfo --system --npmPackages @rspack/cli,vite,parcel,webpack,@swc/core,e
     vite: ^4.2.1 => 4.2.1
     webpack: ^5.76.3 => 5.76.3
 ```
-
-| builder     | dev-server cold start | dev server warm start | production build |
-| ----------- | --------------------- | --------------------- | ---------------- |
-| rspack      | 2.6s                  | 2.3s                  | 2.4s             |
-| vite        | 7.2s                  | 1.4s                  | 11.7s            |
-| parcel      | 13.8s                 | 1.5s                  | 21.3s            |
-| webpack swc | 9.9s                  | 9.6s                  | 8.7s             |
-| webpack     | 15.3s                 | 14.9s                 | 24.0s            |
