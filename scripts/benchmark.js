@@ -162,15 +162,15 @@ async function benchmark() {
   await sleep(3);
 
   // echarts render
-  const chart = echarts.init(null, 'dark', {
-    renderer: 'svg', // must use SVG rendering mode
-    ssr: true, // enable SSR
-    width: 600, // need to specify height and width
-    height: 300,
+  const chart = echarts.init(null, null, {
+    renderer: 'svg',
+    ssr: true,
+    width: 830,
+    height: 400,
   });
 
-  // use setOption as normal
   chart.setOption({
+    backgroundColor: '#fff',
     legend: {},
     xAxis: {
       type: 'value',
@@ -196,7 +196,7 @@ async function benchmark() {
         },
       },
       {
-        name: 'dev-server cold start',
+        name: 'dev-server warm start',
         type: 'bar',
         data: [
           rspackWarmStart,
