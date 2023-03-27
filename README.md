@@ -53,7 +53,7 @@ $ npx envinfo --system --npmPackages @rspack/cli,vite,parcel,webpack,@swc/core,e
   System:
     OS: macOS 13.2.1
     CPU: (12) x64 Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
-    Memory: 3.74 GB / 16.00 GB
+    Memory: 1.07 GB / 16.00 GB
     Shell: 5.8.1 - /bin/zsh
   npmPackages:
     @rspack/cli: ^0.1.2 => 0.1.2
