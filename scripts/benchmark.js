@@ -2,6 +2,7 @@ const http = require('http');
 const { spawn } = require('child_process');
 const echarts = require('echarts');
 const { rm, writeFile } = require('fs/promises');
+const os = require('os');
 
 function sleep(s) {
   return new Promise((resolve) => {
@@ -43,19 +44,31 @@ function measureBuildTime(cmd, args) {
 }
 
 async function benchmark() {
+
+  const isWindows = os.platform() === 'win32';
+  const cmdExt = isWindows ? '.cmd' : '';
+
+  // Define command file paths
+  const rspackCmd = `./node_modules/.bin/rspack${cmdExt}`;
+  const viteCmd = `./node_modules/.bin/vite${cmdExt}`;
+  const parcelCmd = `./node_modules/.bin/parcel${cmdExt}`;
+  const webpackDevServerCmd = `./node_modules/.bin/webpack-dev-server${cmdExt}`;
+  const webpackCmd = `./node_modules/.bin/webpack${cmdExt}`;
+
+
   // Rspack
   await rm('./node_modules/.ignored', { recursive: true, force: true });
   await rm('./node_modules/.ignored_react-refresh', {
     recursive: true,
     force: true,
   });
-  const rspackColdStart = await measureStartTime('./node_modules/.bin/rspack', [
+  const rspackColdStart = await measureStartTime(rspackCmd, [
     'serve',
   ]);
   console.log(`rspack cold start ${rspackColdStart}s`);
 
   await sleep(3);
-  const rspackWarmStart = await measureStartTime('./node_modules/.bin/rspack', [
+  const rspackWarmStart = await measureStartTime(rspackCmd, [
     'serve',
   ]);
   console.log(`rspack warm start ${rspackWarmStart}s`);
@@ -66,7 +79,7 @@ async function benchmark() {
     recursive: true,
     force: true,
   });
-  const rspackBuild = await measureBuildTime('./node_modules/.bin/rspack', [
+  const rspackBuild = await measureBuildTime(rspackCmd, [
     'build',
   ]);
   console.log(`rsbpack prod build ${rspackBuild}s`);
@@ -74,20 +87,20 @@ async function benchmark() {
 
   // Vite
   await rm('./node_modules/.vite', { recursive: true, force: true });
-  const viteColdStart = await measureStartTime('./node_modules/.bin/vite', [
+  const viteColdStart = await measureStartTime(viteCmd, [
     '--open',
   ]);
   console.log(`vite cold start ${viteColdStart}s`);
 
   await sleep(3);
-  const viteWarmStart = await measureStartTime('./node_modules/.bin/vite', [
+  const viteWarmStart = await measureStartTime(viteCmd, [
     '--open',
   ]);
   console.log(`vite warm start ${viteWarmStart}s`);
 
   await sleep(3);
   await rm('./node_modules/.vite', { recursive: true, force: true });
-  const viteBuild = await measureBuildTime('./node_modules/.bin/vite', [
+  const viteBuild = await measureBuildTime(viteCmd, [
     'build',
   ]);
   console.log(`vite prod build ${viteBuild}s`);
@@ -96,20 +109,20 @@ async function benchmark() {
 
   // Parcel
   await rm('./.parcel-cache', { recursive: true, force: true });
-  const parcelColdStart = await measureStartTime('./node_modules/.bin/parcel', [
+  const parcelColdStart = await measureStartTime(parcelCmd, [
     'codebase/index.html',
     '--open',
   ]);
   console.log(`parcel cold start ${parcelColdStart}s`);
   await sleep(3);
-  const parcelWarmStart = await measureStartTime('./node_modules/.bin/parcel', [
+  const parcelWarmStart = await measureStartTime(parcelCmd, [
     'codebase/index.html',
     '--open',
   ]);
   console.log(`parcel warm start ${parcelWarmStart}s`);
   await sleep(3);
   await rm('./.parcel-cache', { recursive: true, force: true });
-  const parcelBuild = await measureBuildTime('./node_modules/.bin/parcel', [
+  const parcelBuild = await measureBuildTime(parcelCmd, [
     'build',
     'codebase/index.html',
   ]);
@@ -119,20 +132,20 @@ async function benchmark() {
   // Webpack + SWC
   await rm('./node_modules/.cache', { recursive: true, force: true });
   const webpackSwcColdStart = await measureStartTime(
-    './node_modules/.bin/webpack-dev-server',
+    webpackDevServerCmd,
     ['--config', 'webpack-swc.config.js', '--open']
   );
   console.log(`webpack swc cold start ${webpackSwcColdStart}s`);
   await sleep(3);
   const webpackSwcWarmStart = await measureStartTime(
-    './node_modules/.bin/webpack-dev-server',
+    webpackDevServerCmd,
     ['--config', 'webpack-swc.config.js', '--open']
   );
   console.log(`webpack swc warm start ${webpackSwcWarmStart}s`);
   await sleep(3);
   await rm('./node_modules/.cache', { recursive: true, force: true });
   const webpackSwcBuild = await measureBuildTime(
-    './node_modules/.bin/webpack',
+    webpackCmd,
     ['--config', 'webpack-swc.config.js']
   );
   console.log(`webpack swc prod build ${webpackSwcBuild}s`);
@@ -141,20 +154,20 @@ async function benchmark() {
   // Webpack
   await rm('./node_modules/.cache', { recursive: true, force: true });
   const webpackColdStart = await measureStartTime(
-    './node_modules/.bin/webpack-dev-server',
+    webpackDevServerCmd,
     ['--open']
   );
   console.log(`webpack cold start ${webpackColdStart}s`);
   await sleep(3);
   const webpackWarmStart = await measureStartTime(
-    './node_modules/.bin/webpack-dev-server',
+    webpackDevServerCmd,
     ['--open']
   );
   console.log(`webpack warm start ${webpackWarmStart}s`);
   await sleep(3);
   await rm('./node_modules/.cache', { recursive: true, force: true });
   const webpackBuild = await measureBuildTime(
-    './node_modules/.bin/webpack',
+    webpackCmd,
     []
   );
   console.log(`webpack prod build ${webpackBuild}s`);
