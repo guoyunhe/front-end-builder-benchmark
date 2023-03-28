@@ -29,6 +29,11 @@ The front-end builder must match the following standard
 - icejs and umijs, only supports React and has too many runtime.
 - turbopack, only supports Next.js.
 
+## Requirement
+```
+node version 18.2 or greater
+```
+
 ## Test Code Base
 
 - 420 React components
