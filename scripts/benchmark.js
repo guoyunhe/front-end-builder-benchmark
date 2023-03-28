@@ -2,7 +2,6 @@ const http = require('http');
 const { spawn } = require('child_process');
 const echarts = require('echarts');
 const { rm, writeFile } = require('fs/promises');
-const os = require('os');
 
 function sleep(s) {
   return new Promise((resolve) => {
