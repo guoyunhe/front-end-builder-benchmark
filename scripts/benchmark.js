@@ -18,7 +18,6 @@ function measureStartTime(cmd, args) {
     const server = http
       .createServer(() => {
         const end = Date.now();
-        server.closeAllConnections();
         server.close();
         child.kill();
         resolve((end - start) / 1000);
